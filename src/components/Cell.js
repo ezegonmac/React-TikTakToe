@@ -4,13 +4,18 @@ import BorderHelper from "../helpers/BorderHelper";
 import Mark from "./Mark";
 
 const useMark = (initial) => {
-    const [marked, setMark] = useState(initial);
+    const [mark, setMark] = useState(initial);
     
-    const toggleMark = () => {
-      setMark(!marked);
+    const toggleMark = (turn) => {
+        console.log("change")
+        console.log(turn)
+        console.log(mark)
+        const blank = mark===null;
+        
+        blank ? setMark(turn) : setMark(null);
     }
   
-    return [marked, toggleMark];
+    return [mark, toggleMark];
 }
 
 const StyledCell = styled.div`
@@ -37,20 +42,20 @@ const Cell = (props) => {
     const row = props.row;
     const col = props.col;
 
-    const [marked, toggleMark] = useMark(false);
+    const [mark, toggleMark] = useMark(null);
 
     const borderStyle = "solid 0.25rem rgb(256,256,256)";
 
     return(
         <StyledCell 
-            onClick={ toggleMark }
+            onClick={ () => toggleMark(props.turn) }
             borderTop ={ BorderHelper.hasTopBorder(row, col) }
             borderRight ={ BorderHelper.hasRightBorder(row, col) }
             borderBottom ={ BorderHelper.hasBottomBorder(row, col) }
             borderLeft ={ BorderHelper.hasLeftBorder(row, col) }
             borderStyle ={ borderStyle }
             >
-            <Mark marked={ marked }/>
+            <Mark mark={ mark }/>
         </StyledCell>
     )
 }

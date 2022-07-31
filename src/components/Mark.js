@@ -13,7 +13,7 @@ const StyledMark = styled.p`
 
 const Mark = (props) => {
 
-    const marked = props.marked;
+    const mark = props.mark;
 
     const rotation = ( Math.random() * 50 - 25 ) + "deg";
     // USE MEMO ?¿
@@ -21,7 +21,7 @@ const Mark = (props) => {
     return(
         <StyledMark
             rotation = { rotation }>
-            { marked ? "x" : null}
+            { mark }
         </StyledMark>
     )
 }

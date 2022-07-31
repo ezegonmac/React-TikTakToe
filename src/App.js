@@ -1,3 +1,4 @@
+import { Component } from "react";
 import styled from "styled-components";
 import Board from "./components/Board";
 
@@ -22,14 +23,30 @@ const BoardContainer = styled.div`
     justify-content: center;
 `
 
-function App() {
-  return (
-    <Content>
-      <BoardContainer>
-        <Board/>
-      </BoardContainer>
-    </Content>
-  );
+class App extends Component {
+
+  state = {
+    turn : 'X'
+  }
+
+  changeTurn = () => {
+    const newTurn = this.state.turn==='X' ? 'O' : 'X';
+
+    this.setState({
+      turn : newTurn
+    });
+  }
+
+  render() {
+    return(
+      <Content>
+        <BoardContainer>
+          <Board turn={this.state.turn}/>
+        </BoardContainer>
+      </Content>
+    )
+  }
+
 }
 
 export default App;

@@ -15,15 +15,15 @@ const Board = (props) => {
 
     return(
         <StyledBoard>
-            <Cell row={1} col={1}/>
-            <Cell row={1} col={2}/>
-            <Cell row={1} col={3}/>
-            <Cell row={2} col={1}/>
-            <Cell row={2} col={2}/>
-            <Cell row={2} col={3}/>
-            <Cell row={3} col={1}/>
-            <Cell row={3} col={2}/>
-            <Cell row={3} col={3}/>
+            <Cell row={1} col={1} turn={props.turn}/>
+            <Cell row={1} col={2} turn={props.turn}/>
+            <Cell row={1} col={3} turn={props.turn}/>
+            <Cell row={2} col={1} turn={props.turn}/>
+            <Cell row={2} col={2} turn={props.turn}/>
+            <Cell row={2} col={3} turn={props.turn}/>
+            <Cell row={3} col={1} turn={props.turn}/>
+            <Cell row={3} col={2} turn={props.turn}/>
+            <Cell row={3} col={3} turn={props.turn}/>
         </StyledBoard>
     )
 }
