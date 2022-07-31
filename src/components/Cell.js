@@ -1,19 +1,19 @@
+import { useState } from "react";
 import styled from "styled-components";
 import BorderHelper from "../helpers/BorderHelper";
+import Mark from "./Mark";
 
-const Cell = (props) => {
+const useMark = (initial) => {
+    const [marked, setMark] = useState(initial);
+    
+    const toggleMark = () => {
+      setMark(!marked);
+    }
+  
+    return [marked, toggleMark];
+}
 
-    const row = props.row;
-    const col = props.col;
-
-    const borderTop = BorderHelper.hasTopBorder(row, col);
-    const borderRight = BorderHelper.hasRightBorder(row, col);
-    const borderBottom = BorderHelper.hasBottomBorder(row, col);
-    const borderLeft = BorderHelper.hasLeftBorder(row, col);
-
-    const borderStyle = "solid 0.25rem rgb(256,256,256)";
-
-    const StyledCell = styled.div`
+const StyledCell = styled.div`
         background-color: green;
         width: 100%;
         height: 100%;
@@ -26,28 +26,31 @@ const Cell = (props) => {
             background-color: darkgreen;
         }
 
-        border-top:    ${borderTop ? borderStyle : "none"};
-        border-right:  ${borderRight ? borderStyle : "none"};
-        border-bottom: ${borderBottom ? borderStyle : "none"};
-        border-left:   ${borderLeft ? borderStyle : "none"};
-    `
+        border-top:    ${props=>props.borderTop ? props.borderStyle : "none"};
+        border-right:  ${props=>props.borderRight ? props.borderStyle : "none"};
+        border-bottom: ${props=>props.borderBottom ? props.borderStyle : "none"};
+        border-left:   ${props=>props.borderLeft ? props.borderStyle : "none"};
+        `
 
-    const Mark = styled.p`
-        background-color: teal;
-        color: white;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-size: 300%;
-        
-        transform: rotate(10deg);
-        
-        pointer-events: none;
-    `
+const Cell = (props) => {
+
+    const row = props.row;
+    const col = props.col;
+
+    const [marked, toggleMark] = useMark(false);
+
+    const borderStyle = "solid 0.25rem rgb(256,256,256)";
 
     return(
-        <StyledCell>
-            <Mark>
-                x
-            </Mark>
+        <StyledCell 
+            onClick={ toggleMark }
+            borderTop ={ BorderHelper.hasTopBorder(row, col) }
+            borderRight ={ BorderHelper.hasRightBorder(row, col) }
+            borderBottom ={ BorderHelper.hasBottomBorder(row, col) }
+            borderLeft ={ BorderHelper.hasLeftBorder(row, col) }
+            borderStyle ={ borderStyle }
+            >
+            <Mark marked={ marked }/>
         </StyledCell>
     )
 }
