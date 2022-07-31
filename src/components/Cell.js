@@ -1,11 +1,17 @@
 import styled from "styled-components";
+import BorderHelper from "../helpers/BorderHelper";
 
 const Cell = (props) => {
 
-    const borderTop = false;
-    const borderRight = false;
-    const borderBottom = false;
-    const borderLeft = false;
+    const row = props.row;
+    const col = props.col;
+
+    const borderTop = BorderHelper.hasTopBorder(row, col);
+    const borderRight = BorderHelper.hasRightBorder(row, col);
+    const borderBottom = BorderHelper.hasBottomBorder(row, col);
+    const borderLeft = BorderHelper.hasLeftBorder(row, col);
+
+    const borderStyle = "solid 0.25rem rgb(256,256,256)";
 
     const StyledCell = styled.div`
         background-color: green;
@@ -20,10 +26,10 @@ const Cell = (props) => {
             background-color: darkgreen;
         }
 
-        border-top: solid 0.1rem rgb(256,256,256);
-        border-right: solid 0.1rem rgb(256,256,256);
-        border-bottom: ${borderBottom ? "solid 0.1rem rgb(256,256,256)" : "none"};
-        border-left: solid 0.1rem rgb(256,256,256);
+        border-top:    ${borderTop ? borderStyle : "none"};
+        border-right:  ${borderRight ? borderStyle : "none"};
+        border-bottom: ${borderBottom ? borderStyle : "none"};
+        border-left:   ${borderLeft ? borderStyle : "none"};
     `
 
     const Mark = styled.p`
