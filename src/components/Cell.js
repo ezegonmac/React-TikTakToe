@@ -31,8 +31,10 @@ const StyledCell = styled.div`
         justify-content: center;
 
         &:hover {
-            background-color: darkgreen;
+            background-color: ${props=>props.mark===null ? "darkgreen" : "darkgreen" };
         }
+        
+        cursor: ${props=>props.mark===null ? "default" : "pointer" };
 
         border-top:    ${props=>props.borderTop ? props.borderStyle : "none"};
         border-right:  ${props=>props.borderRight ? props.borderStyle : "none"};

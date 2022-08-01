@@ -3,12 +3,12 @@ import styled from "styled-components";
 import Board from "./components/Board";
 
 const Content = styled.div`
-  background-color: rgb(25 48 60);
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-  grid-template-rows: 1fr 2fr 1fr;
+    background-color: rgb(25 48 60);
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;
 `
 
 const BoardContainer = styled.div`
@@ -21,6 +21,16 @@ const BoardContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+`
+
+const CurrentPlayer = styled.h1`
+    color: white;
+    margin: auto;
+
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
 `
 
 class App extends Component {
@@ -57,8 +67,11 @@ class App extends Component {
   render() {
     return(
       <Content>
+        <CurrentPlayer>
+          {"Player " + this.state.turn}
+        </CurrentPlayer>
         <BoardContainer>
-          <Board 
+          <Board
             turn={this.state.turn}
             updateBoard={this.updateBoard}/>
         </BoardContainer>
