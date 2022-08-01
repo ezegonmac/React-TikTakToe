@@ -10,6 +10,7 @@ const StyledMark = styled.p`
         transform: rotate(${props => props.rotation});
 
         pointer-events: none;
+        user-select: none;
         `
 
 const Mark = (props) => {

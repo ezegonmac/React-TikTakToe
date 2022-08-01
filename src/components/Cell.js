@@ -7,13 +7,7 @@ const useMark = (initial) => {
     const [mark, setMark] = useState(initial);
     
     const toggleMark = (turn) => {
-        console.log("change")
-        console.log(turn)
-        console.log(mark)
-        const blank = mark===null;
-        
-        const newMark = (blank ? turn : null);
-
+        const newMark = turn;
         setMark(newMark);
         return newMark;
     }
@@ -36,10 +30,10 @@ const StyledCell = styled.div`
         
         cursor: ${props=>props.mark===null ? "default" : "pointer" };
 
-        border-top:    ${props=>props.borderTop ? props.borderStyle : "none"};
-        border-right:  ${props=>props.borderRight ? props.borderStyle : "none"};
-        border-bottom: ${props=>props.borderBottom ? props.borderStyle : "none"};
-        border-left:   ${props=>props.borderLeft ? props.borderStyle : "none"};
+        border-top:    ${props=>props.borderTop ? props.$borderStyle : "none"};
+        border-right:  ${props=>props.borderRight ? props.$borderStyle : "none"};
+        border-bottom: ${props=>props.borderBottom ? props.$borderStyle : "none"};
+        border-left:   ${props=>props.borderLeft ? props.$borderStyle : "none"};
         `
 
 const Cell = (props) => {
@@ -56,8 +50,11 @@ const Cell = (props) => {
     const [mark, toggleMark] = useMark(null);
     
     const handleClick = () => {
-        const newMark = toggleMark(turn);
-        updateBoard(row, col, newMark);
+        
+        if(mark===null) {
+            const newMark = toggleMark(turn);
+            updateBoard(row, col, newMark);
+        }
     }
 
     return(
@@ -67,7 +64,7 @@ const Cell = (props) => {
             borderRight ={ BorderHelper.hasRightBorder(row, col) }
             borderBottom ={ BorderHelper.hasBottomBorder(row, col) }
             borderLeft ={ BorderHelper.hasLeftBorder(row, col) }
-            borderStyle ={ borderStyle }
+            $borderStyle ={ borderStyle }
             >
             <Mark mark={ mark }/>
         </StyledCell>
