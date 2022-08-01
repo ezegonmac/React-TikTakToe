@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import styled from "styled-components";
 
 const StyledMark = styled.p`
@@ -14,9 +15,10 @@ const StyledMark = styled.p`
 const Mark = (props) => {
 
     const mark = props.mark;
-
-    const rotation = ( Math.random() * 50 - 25 ) + "deg";
-    // USE MEMO ?¿
+    
+    const rotation = useMemo(() => {
+        return ( Math.random() * 50 - 25 ) + "deg";
+    }, []);
 
     return(
         <StyledMark
