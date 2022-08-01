@@ -26,7 +26,12 @@ const BoardContainer = styled.div`
 class App extends Component {
 
   state = {
-    turn : 'X'
+    turn : 'X',
+    board: [
+      [null,null,null],
+      [null,null,null],
+      [null,null,null],
+    ]
   }
 
   changeTurn = () => {
@@ -37,11 +42,25 @@ class App extends Component {
     });
   }
 
+  updateBoard = (row, col, newValue) => {
+    const newBoard = this.state.board.slice();
+    newBoard[row-1][col-1] = newValue;
+
+    this.setState({
+      board : newBoard
+    }, () => {
+      console.log(this.state.board);
+      this.changeTurn();
+    });
+  }
+
   render() {
     return(
       <Content>
         <BoardContainer>
-          <Board turn={this.state.turn}/>
+          <Board 
+            turn={this.state.turn}
+            updateBoard={this.updateBoard}/>
         </BoardContainer>
       </Content>
     )

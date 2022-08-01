@@ -12,7 +12,10 @@ const useMark = (initial) => {
         console.log(mark)
         const blank = mark===null;
         
-        blank ? setMark(turn) : setMark(null);
+        const newMark = (blank ? turn : null);
+
+        setMark(newMark);
+        return newMark;
     }
   
     return [mark, toggleMark];
@@ -39,16 +42,25 @@ const StyledCell = styled.div`
 
 const Cell = (props) => {
 
+    // props
     const row = props.row;
     const col = props.col;
 
-    const [mark, toggleMark] = useMark(null);
+    const turn = props.turn;
+    const updateBoard = props.updateBoard;
 
     const borderStyle = "solid 0.25rem rgb(256,256,256)";
+    
+    const [mark, toggleMark] = useMark(null);
+    
+    const handleClick = () => {
+        const newMark = toggleMark(turn);
+        updateBoard(row, col, newMark);
+    }
 
     return(
         <StyledCell 
-            onClick={ () => toggleMark(props.turn) }
+            onClick={ handleClick }
             borderTop ={ BorderHelper.hasTopBorder(row, col) }
             borderRight ={ BorderHelper.hasRightBorder(row, col) }
             borderBottom ={ BorderHelper.hasBottomBorder(row, col) }

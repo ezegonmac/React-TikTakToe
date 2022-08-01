@@ -13,17 +13,21 @@ const StyledBoard = styled.div`
 
 const Board = (props) => {
 
+    // props
+    const turn = props.turn;
+    const updateBoard = props.updateBoard;
+
     return(
         <StyledBoard>
-            <Cell row={1} col={1} turn={props.turn}/>
-            <Cell row={1} col={2} turn={props.turn}/>
-            <Cell row={1} col={3} turn={props.turn}/>
-            <Cell row={2} col={1} turn={props.turn}/>
-            <Cell row={2} col={2} turn={props.turn}/>
-            <Cell row={2} col={3} turn={props.turn}/>
-            <Cell row={3} col={1} turn={props.turn}/>
-            <Cell row={3} col={2} turn={props.turn}/>
-            <Cell row={3} col={3} turn={props.turn}/>
+            <Cell row={1} col={1} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={1} col={2} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={1} col={3} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={2} col={1} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={2} col={2} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={2} col={3} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={3} col={1} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={3} col={2} turn={turn} updateBoard={updateBoard}/>
+            <Cell row={3} col={3} turn={turn} updateBoard={updateBoard}/>
         </StyledBoard>
     )
 }
