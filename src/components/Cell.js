@@ -5,7 +5,6 @@ import useMark from "../hooks/UseMark";
 
 
 const StyledCell = styled.div`
-        background-color: green;
         width: 100%;
         height: 100%;
 
@@ -14,7 +13,7 @@ const StyledCell = styled.div`
         justify-content: center;
 
         &:hover {
-            background-color: ${props=>props.mark===null ? "darkgreen" : "darkgreen" };
+            background-color: ${props=>props.mark===null ? "" : "#FEB139" };
         }
         
         cursor: ${props=>props.mark===null ? "default" : "pointer" };

@@ -2,10 +2,10 @@ import { useMemo } from "react";
 import styled from "styled-components";
 
 const StyledMark = styled.p`
-        background-color: teal;
-        color: white;
+        color: ${props => props.mark === "X" ? "#FFF80A" : "#D61C4E"};
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        font-size: 300%;
+        font-size: 200%;
+        text-shadow: 2px 2px 4px #00000070;
 
         transform: rotate(${props => props.rotation});
 
@@ -23,7 +23,8 @@ const Mark = (props) => {
 
     return(
         <StyledMark
-            rotation = { rotation }>
+            rotation = { rotation }
+            mark= { mark }>
             { mark }
         </StyledMark>
     )

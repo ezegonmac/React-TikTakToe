@@ -2,18 +2,18 @@ import { Component } from "react";
 import styled from "styled-components";
 import Board from "./components/Board";
 import MatrixHelper from "./helpers/MatrixHelper";
+import Player from "./components/Player";
 
 const Content = styled.div`
-    background-color: rgb(25 48 60);
+    background-color: #293462;
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-columns: 1.5fr 2fr 1.5fr;
+    grid-template-rows: 1.5fr 2fr 1.5fr;
 `
 
 const BoardContainer = styled.div`
-    background-color: rgba(100,100,100,0.4);
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
@@ -22,16 +22,6 @@ const BoardContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`
-
-const CurrentPlayer = styled.h1`
-    color: white;
-    margin: auto;
-
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
 `
 
 class App extends Component {
@@ -88,9 +78,8 @@ class App extends Component {
   render() {
     return(
       <Content>
-        <CurrentPlayer>
-          {"Player " + this.state.turn}
-        </CurrentPlayer>
+        <Player player={"X"} turn={this.state.turn}/>
+        <Player player={"O"} turn={this.state.turn}/>
         <BoardContainer>
           <Board
             finished={this.state.finished}

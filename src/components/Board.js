@@ -2,7 +2,6 @@ import styled from "styled-components"
 import Cell from "./Cell"
 
 const StyledBoard = styled.div`
-    background-color: yellow;
     aspect-ratio: 1;
     width: clamp(15rem, 65%, 35rem);
 
