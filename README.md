@@ -1,6 +1,6 @@
 # Screenshots
 
-![react tiktaktoe](https://github.com/ezegonmac/React-TikTakToe/blob/'main'/screenshot-1.png)
+![react tiktaktoe](https://github.com/ezegonmac/React-TikTakToe/blob/main/screenshot-1.png)
 
 # Setup
 
