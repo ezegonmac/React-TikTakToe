@@ -1,6 +1,7 @@
 import { Component } from "react";
 import styled from "styled-components";
 import Board from "./components/Board";
+import MatrixHelper from "./helpers/MatrixHelper";
 
 const Content = styled.div`
     background-color: rgb(25 48 60);
@@ -36,12 +37,33 @@ const CurrentPlayer = styled.h1`
 class App extends Component {
 
   state = {
+    finished: false,
     turn : 'X',
     board: [
       [null,null,null],
       [null,null,null],
       [null,null,null],
     ]
+  }
+  
+  finalSequence = () => {
+    alert("Winner :" + this.state.turn);
+  }
+
+  checkIfFinished = () => {
+    const hasFinished = MatrixHelper.checkMatrix(this.state.board);
+
+    if (hasFinished) { 
+      this.setState({
+        finished : true
+      });
+
+      this.finalSequence();
+    }
+    else{
+      this.changeTurn();
+    }
+
   }
 
   changeTurn = () => {
@@ -59,8 +81,7 @@ class App extends Component {
     this.setState({
       board : newBoard
     }, () => {
-      console.log(this.state.board);
-      this.changeTurn();
+      this.checkIfFinished();
     });
   }
 
@@ -72,6 +93,7 @@ class App extends Component {
         </CurrentPlayer>
         <BoardContainer>
           <Board
+            finished={this.state.finished}
             turn={this.state.turn}
             updateBoard={this.updateBoard}/>
         </BoardContainer>

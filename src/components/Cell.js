@@ -42,6 +42,7 @@ const Cell = (props) => {
     const row = props.row;
     const col = props.col;
 
+    const finished = props.finished;
     const turn = props.turn;
     const updateBoard = props.updateBoard;
 
@@ -51,7 +52,7 @@ const Cell = (props) => {
     
     const handleClick = () => {
         
-        if(mark===null) {
+        if(mark===null && !finished) {
             const newMark = toggleMark(turn);
             updateBoard(row, col, newMark);
         }
