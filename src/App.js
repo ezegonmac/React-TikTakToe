@@ -11,9 +11,11 @@ const Content = styled.div`
     display: grid;
     grid-template-columns: 1.5fr 2fr 1.5fr;
     grid-template-rows: 1.5fr 2fr 1.5fr;
+    z-index: -1;
 `
 
 const BoardContainer = styled.div`
+    position: relative;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
@@ -22,6 +24,17 @@ const BoardContainer = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 1;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      aspect-ratio: 1;
+      z-index: 0;
+      border-radius: 50%;
+      background-color: #27315d;
+    }
 `
 
 class App extends Component {
