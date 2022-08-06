@@ -1,19 +1,8 @@
-import { useState } from "react";
 import styled from "styled-components";
 import BorderHelper from "../helpers/BorderHelper";
 import Mark from "./Mark";
+import useMark from "../hooks/UseMark";
 
-const useMark = (initial) => {
-    const [mark, setMark] = useState(initial);
-    
-    const toggleMark = (turn) => {
-        const newMark = turn;
-        setMark(newMark);
-        return newMark;
-    }
-  
-    return [mark, toggleMark];
-}
 
 const StyledCell = styled.div`
         background-color: green;
