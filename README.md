@@ -5,8 +5,6 @@
 
 # Setup
 
-Create a `.env.local` file using the existing `env.local.example` replacing the API key with yours.
-
 Run `npm start`
 Runs the app in the development mode.\
 
