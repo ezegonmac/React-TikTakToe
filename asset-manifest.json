@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-TikTakToe/static/css/main.4ce95897.css",
+    "main.js": "/React-TikTakToe/static/js/main.2a032a8c.js",
+    "static/js/787.c779557d.chunk.js": "/React-TikTakToe/static/js/787.c779557d.chunk.js",
+    "index.html": "/React-TikTakToe/index.html",
+    "main.4ce95897.css.map": "/React-TikTakToe/static/css/main.4ce95897.css.map",
+    "main.2a032a8c.js.map": "/React-TikTakToe/static/js/main.2a032a8c.js.map",
+    "787.c779557d.chunk.js.map": "/React-TikTakToe/static/js/787.c779557d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4ce95897.css",
+    "static/js/main.2a032a8c.js"
+  ]
+}
