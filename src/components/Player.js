@@ -1,4 +1,44 @@
-import styled from "styled-components"
+import styled, { keyframes } from "styled-components"
+
+const fadeInX = keyframes`
+    from {
+        transform: translateX(-30vw);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+`
+
+const fadeOutX = keyframes`
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-30vw);
+    }
+`
+
+const fadeInO = keyframes`
+    from {
+        transform: translateX(30vw);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+`
+
+const fadeOutO = keyframes`
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(30vw);
+    }
+`
 
 const StyledPlayer = styled.h1`
     position: relative;
@@ -8,7 +48,7 @@ const StyledPlayer = styled.h1`
 
     grid-row-start: 1;
     grid-row-end: 2;
-
+    
     &:after {
         content: "";
         position: absolute;
@@ -16,8 +56,6 @@ const StyledPlayer = styled.h1`
         bottom: -1rem;
         left: -30px;
         right: -30px;
-        transition: opacity 0.4s cubic-bezier(0.65, 0.05, 0.36, 1) 0s;
-        opacity: ${props => props.player === props.turn ? "1" : "0"};
 
         border-bottom: inset rgba(256,256,256, 90%) 5px;
         box-shadow: 0px 2px 3px -3px #00000050;
@@ -27,11 +65,19 @@ const StyledPlayer = styled.h1`
 const PlayerX = styled(StyledPlayer)`
     grid-column-start: 1;
     grid-column-end: 2;
+
+    &:after{
+        animation: ${props => props.player === props.turn ? fadeInX : fadeOutX } 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    }
 `
 
 const PlayerO = styled(StyledPlayer)`
     grid-column-start: 3;
     grid-column-end: 4;
+
+    &:after {
+        animation: ${props => props.player === props.turn ? fadeInO : fadeOutO} 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+    }
 `
 
 const Player = (props) => {
