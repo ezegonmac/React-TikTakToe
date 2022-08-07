@@ -1,4 +1,5 @@
 import styled, { keyframes } from "styled-components";
+import ConfettiShower from "./Confetti";
 
 const blowIn = keyframes`
     from {
@@ -44,14 +45,17 @@ const Winner = styled.h1`
 
 const FinalScreen = (props) => {
     return(
-        <StyledFinalScreen>
-            <Winner>
-                Winner
-            <Winner>
-            </Winner> 
-                Player {props.winner}
-            </Winner>
-        </StyledFinalScreen>
+        <>
+            <ConfettiShower/>
+            <StyledFinalScreen>
+                <Winner>
+                    Winner
+                <Winner>
+                </Winner> 
+                    Player {props.winner}
+                </Winner>
+            </StyledFinalScreen>
+        </>
     )
 }
 
