@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Board from "./components/Board";
 import MatrixHelper from "./helpers/MatrixHelper";
 import Player from "./components/Player";
+import FinalScreen from "./components/FinalScreen";
+import './App.css';
 
 const Content = styled.div`
     background-color: #293462;
@@ -12,6 +14,7 @@ const Content = styled.div`
     grid-template-columns: 1.5fr 2fr 1.5fr;
     grid-template-rows: 1.5fr 2fr 1.5fr;
     z-index: -1;
+    overflow: hidden;
 `
 
 const BoardContainer = styled.div`
@@ -50,7 +53,7 @@ class App extends Component {
   }
   
   finalSequence = () => {
-    alert("Winner :" + this.state.turn);
+    
   }
 
   checkIfFinished = () => {
@@ -90,16 +93,22 @@ class App extends Component {
 
   render() {
     return(
-      <Content>
-        <Player player={"X"} turn={this.state.turn}/>
-        <Player player={"O"} turn={this.state.turn}/>
-        <BoardContainer>
-          <Board
-            finished={this.state.finished}
-            turn={this.state.turn}
-            updateBoard={this.updateBoard}/>
-        </BoardContainer>
-      </Content>
+      <>
+        { this.state.finished ?
+          <FinalScreen winner={this.state.turn}/> :
+          null
+        }
+        <Content>
+          <Player player={"X"} turn={this.state.turn}/>
+          <Player player={"O"} turn={this.state.turn}/>
+          <BoardContainer>
+            <Board
+              finished={this.state.finished}
+              turn={this.state.turn}
+              updateBoard={this.updateBoard}/>
+          </BoardContainer>
+        </Content>
+      </>
     )
   }
 

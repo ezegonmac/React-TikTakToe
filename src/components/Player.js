@@ -4,7 +4,7 @@ const fadeInX = keyframes`
     from {
         transform: translateX(-30vw);
     }
-
+    
     to {
         transform: translateX(0);
     }
@@ -14,7 +14,7 @@ const fadeOutX = keyframes`
     from {
         transform: translateX(0);
     }
-
+    
     to {
         transform: translateX(-30vw);
     }
@@ -24,7 +24,7 @@ const fadeInO = keyframes`
     from {
         transform: translateX(30vw);
     }
-
+    
     to {
         transform: translateX(0);
     }
@@ -34,7 +34,7 @@ const fadeOutO = keyframes`
     from {
         transform: translateX(0);
     }
-
+    
     to {
         transform: translateX(30vw);
     }
@@ -43,7 +43,6 @@ const fadeOutO = keyframes`
 const StyledPlayer = styled.h1`
     position: relative;
     color: white;
-    font-family: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
     margin: auto;
 
     grid-row-start: 1;
@@ -59,6 +58,9 @@ const StyledPlayer = styled.h1`
 
         border-bottom: inset rgba(256,256,256, 90%) 5px;
         box-shadow: 0px 2px 3px -3px #00000050;
+
+        display: ${props => props.player === props.turn ?  'block' : 'none'};
+        transition: visibility 0.5s linear;
     }
 `
 
