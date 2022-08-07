@@ -44,6 +44,7 @@ const StyledPlayer = styled.h1`
     position: relative;
     color: white;
     margin: auto;
+    font-size: 1.8rem;
 
     grid-row-start: 1;
     grid-row-end: 2;

@@ -13,7 +13,7 @@ const StyledCell = styled.div`
         justify-content: center;
 
         &:hover {
-            background-color: ${props=>props.mark===null ? "" : "#FEB139" };
+            background-color: ${props=>props.mark===null ? "" : "#FEB13940" };
         }
         
         cursor: ${props=>props.mark===null ? "default" : "pointer" };

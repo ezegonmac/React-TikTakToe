@@ -32,7 +32,7 @@ const BoardContainer = styled.div`
     &:after {
       content: "";
       position: absolute;
-      width: 100%;
+      width: clamp(15rem, 150%, 35rem);
       aspect-ratio: 1;
       z-index: 0;
       border-radius: 50%;
@@ -53,7 +53,7 @@ class App extends Component {
   }
   
   finalSequence = () => {
-    
+
   }
 
   checkIfFinished = () => {

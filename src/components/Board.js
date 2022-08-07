@@ -3,7 +3,7 @@ import Cell from "./Cell"
 
 const StyledBoard = styled.div`
     aspect-ratio: 1;
-    width: clamp(15rem, 65%, 35rem);
+    width: clamp(15rem, 90%, 20rem);
 
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
