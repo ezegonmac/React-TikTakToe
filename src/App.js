@@ -5,6 +5,7 @@ import MatrixHelper from "./helpers/MatrixHelper";
 import Player from "./components/Player";
 import FinalScreen from "./components/FinalScreen";
 import './App.css';
+import { ResetButton } from "./components/Button";
 
 const Content = styled.div`
     background-color: #293462;
@@ -40,20 +41,21 @@ const BoardContainer = styled.div`
     }
 `
 
+const initialState = {
+  finished: false,
+  turn : 'X',
+  board: [
+    [null,null,null],
+    [null,null,null],
+    [null,null,null],
+  ]
+}
+
 class App extends Component {
 
-  state = {
-    finished: false,
-    turn : 'X',
-    board: [
-      [null,null,null],
-      [null,null,null],
-      [null,null,null],
-    ]
-  }
-  
-  finalSequence = () => {
-
+  constructor(props) {
+    super(props);
+    this.state = initialState;
   }
 
   checkIfFinished = () => {
@@ -63,8 +65,6 @@ class App extends Component {
       this.setState({
         finished : true
       });
-
-      this.finalSequence();
     }
     else{
       this.changeTurn();
@@ -107,6 +107,7 @@ class App extends Component {
               turn={this.state.turn}
               updateBoard={this.updateBoard}/>
           </BoardContainer>
+          <ResetButton onClick={this.reset}/>
         </Content>
       </>
     )

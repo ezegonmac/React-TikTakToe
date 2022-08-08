@@ -36,7 +36,7 @@ const Cell = (props) => {
 
     const borderStyle = "solid 0.25rem rgb(256,256,256)";
     
-    const [mark, toggleMark] = useMark(null);
+    const [mark, toggleMark, resetMark] = useMark(null);
     
     const handleClick = () => {
         
@@ -47,7 +47,7 @@ const Cell = (props) => {
     }
 
     return(
-        <StyledCell 
+        <StyledCell
             onClick={ handleClick }
             borderTop ={ BorderHelper.hasTopBorder(row, col) }
             borderRight ={ BorderHelper.hasRightBorder(row, col) }
