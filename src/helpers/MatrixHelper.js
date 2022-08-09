@@ -1,14 +1,20 @@
 
 class MatrixHelper {
 
+    static copyOf(matrix) {
+        return matrix.map((arr) => {
+            return arr.slice();
+        });
+    }
+
     static transpose(matrix) {
-        let transposed = Array.from(matrix);
+        let transposed = this.copyOf(matrix);
         return transposed[0].map((col, i) => transposed.map(row => row[i]));
     }
 
     static symmetry(matrix) {
-        let symmetry = Array.from(matrix);
-
+        let symmetry = this.copyOf(matrix);
+        
         for (let i = 0; i < symmetry.length; i++) {
             for (let j = 0; j < symmetry[i].length / 2; j++) {
                 const temp = symmetry[i][j];
@@ -41,7 +47,6 @@ class MatrixHelper {
 
     static checkSecondDiagonal(matrix) {
         matrix = MatrixHelper.symmetry(matrix);
-        console.log(matrix);
         return MatrixHelper.checkFirstDiagonal(matrix);
     }
 

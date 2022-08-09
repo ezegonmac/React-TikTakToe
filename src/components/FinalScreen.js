@@ -49,10 +49,8 @@ const FinalScreen = (props) => {
             <ConfettiShower/>
             <StyledFinalScreen>
                 <Winner>
-                    Winner
-                <Winner>
-                </Winner> 
-                    Player {props.winner}
+                    <p>Winner</p>
+                    <p>Player {props.winner}</p>
                 </Winner>
             </StyledFinalScreen>
         </>

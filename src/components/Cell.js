@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import { useBoard, useBoardUpdate } from "../context/GameContext";
 import BorderHelper from "../helpers/BorderHelper";
 import Mark from "./Mark";
-import useMark from "../hooks/UseMark";
 
 
 const StyledCell = styled.div`
@@ -32,17 +32,16 @@ const Cell = (props) => {
 
     const finished = props.finished;
     const turn = props.turn;
-    const updateBoard = props.updateBoard;
 
     const borderStyle = "solid 0.25rem rgb(256,256,256)";
-    
-    const [mark, toggleMark, resetMark] = useMark(null);
-    
+
+    const board = useBoard();
+    const updateBoard = useBoardUpdate();
+    const mark = board[row-1][col-1];
+
     const handleClick = () => {
-        
         if(mark===null && !finished) {
-            const newMark = toggleMark(turn);
-            updateBoard(row, col, newMark);
+            updateBoard(row, col, turn);
         }
     }
 

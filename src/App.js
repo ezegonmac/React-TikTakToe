@@ -1,11 +1,14 @@
-import { Component } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
-import Board from "./components/Board";
-import MatrixHelper from "./helpers/MatrixHelper";
-import Player from "./components/Player";
-import FinalScreen from "./components/FinalScreen";
 import './App.css';
+import Board from "./components/Board";
 import { ResetButton } from "./components/Button";
+import FinalScreen from "./components/FinalScreen";
+import Player from "./components/Player";
+import { useBoard, useBoardClear } from "./context/GameContext";
+import MatrixHelper from "./helpers/MatrixHelper";
+import useFinished from "./hooks/useFinished";
+import useTurn from "./hooks/useTurn";
 
 const Content = styled.div`
     background-color: #293462;
@@ -41,77 +44,48 @@ const BoardContainer = styled.div`
     }
 `
 
-const initialState = {
-  finished: false,
-  turn : 'X',
-  board: [
-    [null,null,null],
-    [null,null,null],
-    [null,null,null],
-  ]
-}
+const App = () => {
 
-class App extends Component {
+  const board = useBoard();
+  const clearBoard = useBoardClear();
+  const [hasFinished, finish, restart] = useFinished();
+  const [turn, changeTurn, resetTurn] = useTurn();
 
-  constructor(props) {
-    super(props);
-    this.state = initialState;
-  }
+  useEffect(() => {
+    const checkmate = MatrixHelper.checkMatrix(board);
 
-  checkIfFinished = () => {
-    const hasFinished = MatrixHelper.checkMatrix(this.state.board);
-
-    if (hasFinished) { 
-      this.setState({
-        finished : true
-      });
+    if (checkmate) {
+      finish();
     }
     else{
-      this.changeTurn();
+      changeTurn();
     }
+  }, [board])
 
+  const reset = () => {
+    clearBoard();
+    restart();
+    resetTurn();
   }
-
-  changeTurn = () => {
-    const newTurn = this.state.turn==='X' ? 'O' : 'X';
-
-    this.setState({
-      turn : newTurn
-    });
-  }
-
-  updateBoard = (row, col, newValue) => {
-    const newBoard = this.state.board.slice();
-    newBoard[row-1][col-1] = newValue;
-
-    this.setState({
-      board : newBoard
-    }, () => {
-      this.checkIfFinished();
-    });
-  }
-
-  render() {
-    return(
-      <>
-        { this.state.finished ?
-          <FinalScreen winner={this.state.turn}/> :
-          null
-        }
-        <Content>
-          <Player player={"X"} turn={this.state.turn}/>
-          <Player player={"O"} turn={this.state.turn}/>
-          <BoardContainer>
-            <Board
-              finished={this.state.finished}
-              turn={this.state.turn}
-              updateBoard={this.updateBoard}/>
-          </BoardContainer>
-          <ResetButton onClick={this.reset}/>
-        </Content>
-      </>
-    )
-  }
+  
+  return(
+    <>
+      { hasFinished ?
+        <FinalScreen winner={turn}/> :
+        null
+      }
+      <Content>
+        <Player player={"X"} turn={turn}/>
+        <Player player={"O"} turn={turn}/>
+        <BoardContainer>
+          <Board
+            finished={hasFinished}
+            turn={turn}/>
+        </BoardContainer>
+        <ResetButton onClick={reset}/>
+      </Content>
+    </>
+  )
 
 }
 

@@ -16,19 +16,18 @@ const Board = (props) => {
     // props
     const finished = props.finished;
     const turn = props.turn;
-    const updateBoard = props.updateBoard;
 
     return(
         <StyledBoard>
-            <Cell finished={finished} row={1} col={1} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={1} col={2} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={1} col={3} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={2} col={1} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={2} col={2} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={2} col={3} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={3} col={1} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={3} col={2} turn={turn} updateBoard={updateBoard}/>
-            <Cell finished={finished} row={3} col={3} turn={turn} updateBoard={updateBoard}/>
+            <Cell finished={finished} row={1} col={1} turn={turn}/>
+            <Cell finished={finished} row={1} col={2} turn={turn}/>
+            <Cell finished={finished} row={1} col={3} turn={turn}/>
+            <Cell finished={finished} row={2} col={1} turn={turn}/>
+            <Cell finished={finished} row={2} col={2} turn={turn}/>
+            <Cell finished={finished} row={2} col={3} turn={turn}/>
+            <Cell finished={finished} row={3} col={1} turn={turn}/>
+            <Cell finished={finished} row={3} col={2} turn={turn}/>
+            <Cell finished={finished} row={3} col={3} turn={turn}/>
         </StyledBoard>
     )
 }
